@@ -29,7 +29,7 @@ class MemberApiServiceTest {
     @Test
     fun signup_success() {
         // given
-        val memberRequest = MemberRequest(null, "홍길동", "hong@woodo.kr", "010-0001-0002", "password123")
+        val memberRequest = MemberRequest("홍길동", "hong@woodo.kr", "010-0001-0002", "password123")
         val newMember = memberRequest.requestToEntity()
 
         given(memberDataReadService.existsByName("홍길동")).willReturn(false)
@@ -45,8 +45,7 @@ class MemberApiServiceTest {
     @Test
     fun signup_fail_already_exist_name() {
         // given
-        val memberRequest = MemberRequest(null, "홍길동", "hong@woodo.kr", "010-0001-0002", "password123")
-        val newMember = memberRequest.requestToEntity()
+        val memberRequest = MemberRequest("홍길동", "hong@woodo.kr", "010-0001-0002", "password123")
 
         given(memberDataReadService.existsByName("홍길동")).willReturn(true)
 

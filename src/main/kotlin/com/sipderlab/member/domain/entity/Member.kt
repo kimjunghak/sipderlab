@@ -9,10 +9,10 @@ import jakarta.persistence.Id
 @Entity
 class Member(
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private val userId: Long? = null,
-    private val name: String,
-    private val email: String,
-    private val cellNo: String,
-    private val password: String,
-): BaseEntity() {
-}
+    val userId: Long? = null,
+    val name: String,
+    val email: String,
+    val cellNo: String,
+    val password: String,
+): BaseEntity()
+//TODO 비밀번호 암호화

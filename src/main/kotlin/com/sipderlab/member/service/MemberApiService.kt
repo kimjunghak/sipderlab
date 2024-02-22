@@ -1,5 +1,6 @@
 package com.sipderlab.member.service
 
+import com.sipderlab.member.domain.entity.Member
 import com.sipderlab.member.domain.request.MemberRequest
 import com.sipderlab.member.service.data.MemberDataReadService
 import com.sipderlab.member.service.data.MemberDataWriteService
@@ -14,7 +15,7 @@ class MemberApiService(
     fun signup(memberRequest: MemberRequest) {
         checkDuplicateName(memberRequest.name)
 
-        val newMember = memberRequest.requestToEntity()
+        val newMember: Member = memberRequest.requestToEntity()
         memberDataWriteService.saveMember(newMember)
     }
 
