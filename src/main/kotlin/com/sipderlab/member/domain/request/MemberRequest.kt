@@ -18,7 +18,7 @@ class MemberRequest(
     val password: String,
 ) {
 
-    fun requestToEntity(): Member = Member(
+    fun toMember(): Member = Member(
         name = this.name,
         email = this.email,
         cellNo = this.cellNo,

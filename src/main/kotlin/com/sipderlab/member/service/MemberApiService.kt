@@ -1,5 +1,6 @@
 package com.sipderlab.member.service
 
+import com.sipderlab.common.exception.SpiderlabException
 import com.sipderlab.member.domain.entity.Member
 import com.sipderlab.member.domain.request.MemberRequest
 import com.sipderlab.member.service.data.MemberDataReadService
@@ -15,13 +16,13 @@ class MemberApiService(
     fun signup(memberRequest: MemberRequest) {
         checkDuplicateName(memberRequest.name)
 
-        val newMember: Member = memberRequest.requestToEntity()
+        val newMember: Member = memberRequest.toMember()
         memberDataWriteService.saveMember(newMember)
     }
 
     private fun checkDuplicateName(name: String) {
         if (memberDataReadService.existsByName(name)) {
-            throw RuntimeException("Name already exists. Please try another name.")
+            throw SpiderlabException("Name already exists. Please try another name.")
         }
     }
 }

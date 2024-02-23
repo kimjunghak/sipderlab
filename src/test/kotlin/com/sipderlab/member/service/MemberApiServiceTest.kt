@@ -1,5 +1,6 @@
 package com.sipderlab.member.service
 
+import com.sipderlab.common.exception.SpiderlabException
 import com.sipderlab.member.domain.request.MemberRequest
 import com.sipderlab.member.service.data.MemberDataReadService
 import com.sipderlab.member.service.data.MemberDataWriteService
@@ -30,7 +31,7 @@ class MemberApiServiceTest {
     fun signup_success() {
         // given
         val memberRequest = MemberRequest("홍길동", "hong@woodo.kr", "010-0001-0002", "password123")
-        val newMember = memberRequest.requestToEntity()
+        val newMember = memberRequest.toMember()
 
         given(memberDataReadService.existsByName("홍길동")).willReturn(false)
         given(memberDataWriteService.saveMember(any())).willReturn(newMember)
@@ -50,7 +51,7 @@ class MemberApiServiceTest {
         given(memberDataReadService.existsByName("홍길동")).willReturn(true)
 
         // when
-        val throws = assertThrows<RuntimeException> {
+        val throws = assertThrows<SpiderlabException> {
             memberApiService.signup(memberRequest)
         }
 
