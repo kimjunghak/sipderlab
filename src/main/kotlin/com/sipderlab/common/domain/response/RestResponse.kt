@@ -4,16 +4,15 @@ import com.fasterxml.jackson.annotation.JsonInclude
 import org.springframework.http.HttpStatus
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-data class RestResult(
+data class RestResponse(
     val status: Int,
     val msg: String? = "An exception occurred",
     val data: Any? = null
 ) {
 
     companion object {
-        fun ok() = RestResult(HttpStatus.OK.value(), "success", null)
-        fun failWithData(status: Int, msg: String, data: Any) = RestResult(status, msg, data)
+        fun ok(data: Any? = null) = RestResponse(HttpStatus.OK.value(), "success", data)
+        fun fail(status: Int, msg: String? = "error", data: Any? = null): RestResponse = RestResponse(status, msg, data)
 
-        fun fail(status: Int, msg: String?): RestResult = RestResult(status, msg)
     }
 }

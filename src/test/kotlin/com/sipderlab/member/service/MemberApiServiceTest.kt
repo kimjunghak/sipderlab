@@ -33,8 +33,8 @@ class MemberApiServiceTest {
         val memberRequest = MemberRequest("홍길동", "hong@woodo.kr", "010-0001-0002", "password123")
         val newMember = memberRequest.toMember()
 
-        given(memberDataReadService.existsByName("홍길동")).willReturn(false)
-        given(memberDataWriteService.saveMember(any())).willReturn(newMember)
+        given(memberDataReadService.existsByEmail("hong@woodo.kr")).willReturn(false)
+        given(memberDataWriteService.createMember(any())).willReturn(newMember)
 
         // when
         memberApiService.signup(memberRequest)
@@ -44,11 +44,11 @@ class MemberApiServiceTest {
     }
 
     @Test
-    fun signup_fail_already_exist_name() {
+    fun signup_fail_already_exist_email() {
         // given
         val memberRequest = MemberRequest("홍길동", "hong@woodo.kr", "010-0001-0002", "password123")
 
-        given(memberDataReadService.existsByName("홍길동")).willReturn(true)
+        given(memberDataReadService.existsByEmail("hong@woodo.kr")).willReturn(true)
 
         // when
         val throws = assertThrows<SpiderlabException> {
@@ -56,6 +56,6 @@ class MemberApiServiceTest {
         }
 
         // then
-        assertEquals("Name already exists. Please try another name.", throws.message)
+        assertEquals("Email already exists. Please try another email.", throws.message)
     }
 }

@@ -1,6 +1,7 @@
 package com.sipderlab.book.domain.request
 
 import com.sipderlab.book.domain.entity.Book
+import com.sipderlab.member.domain.entity.Member
 import jakarta.validation.constraints.NotNull
 import jakarta.validation.constraints.Pattern
 
@@ -16,6 +17,6 @@ data class BookRequest(
     fun toBook() = Book(
         isbn = this.isbn,
         name = this.name,
-        price = this.price
+        price = this.price,
     )
 }
