@@ -131,3 +131,12 @@
  
 ##### Description
 동시에 같은 책을 대여할 경우 문제를 대비
+
+
+### Application 개발 환경
+IDE: Intellij Ultimate   
+Java: v21   
+Kotlin: v1.9.22   
+Spring Boot: v3.2.2
+
+profile: `dev`로 실행 시 DataSetup.kt이 실행되어서 기본 데이터 세팅을 하여 테스트 가능
