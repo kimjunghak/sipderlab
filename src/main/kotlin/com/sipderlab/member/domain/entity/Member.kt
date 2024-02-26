@@ -13,7 +13,7 @@ class Member(
     val name: String,
     val email: String,
     val cellNo: String,
-    val password: String,
+    var password: String,
 ): BaseEntity()
 {
     override fun equals(other: Any?): Boolean {
@@ -40,4 +40,3 @@ class Member(
         return result
     }
 }
-//TODO 비밀번호 암호화
