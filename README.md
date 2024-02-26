@@ -133,6 +133,9 @@
 동시에 같은 책을 대여할 경우 문제를 대비
 
 
+### 책 반납
+- 책 반납의 경우 Scheduler를 통해서 1초마다 조사하여서 반납 대상을 선정 후에 반납 
+
 ### Application 개발 환경
 IDE: Intellij Ultimate   
 Java: v21   
