@@ -1,6 +1,7 @@
 package com.sipderlab.member.service
 
 import com.sipderlab.common.exception.SpiderlabException
+import com.sipderlab.member.domain.crypt.SimplePasswordEncoder
 import com.sipderlab.member.domain.request.MemberRequest
 import com.sipderlab.member.service.data.MemberDataReadService
 import com.sipderlab.member.service.data.MemberDataWriteService
@@ -27,6 +28,9 @@ class MemberApiServiceTest {
     @Mock
     private lateinit var memberDataWriteService: MemberDataWriteService
 
+    @Mock
+    private lateinit var passwordEncoder: SimplePasswordEncoder
+
     @Test
     fun signup_success() {
         // given
@@ -35,6 +39,7 @@ class MemberApiServiceTest {
 
         given(memberDataReadService.existsByEmail("hong@woodo.kr")).willReturn(false)
         given(memberDataWriteService.createMember(any())).willReturn(newMember)
+        given(passwordEncoder.encodePassword(memberRequest.password)).willReturn("encrypt password")
 
         // when
         memberApiService.signup(memberRequest)

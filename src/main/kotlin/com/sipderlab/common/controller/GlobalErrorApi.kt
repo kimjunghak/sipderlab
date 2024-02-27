@@ -1,4 +1,4 @@
-package com.sipderlab.common.api
+package com.sipderlab.common.controller
 
 import com.sipderlab.common.domain.response.RestResponse
 import com.sipderlab.common.exception.SpiderlabException
@@ -17,7 +17,9 @@ class GlobalErrorApi {
     fun methodArgumentNotValidException(exception: MethodArgumentNotValidException): RestResponse {
         val errors = HashMap<String, String>()
         exception.fieldErrors.forEach {
-            errors[it.field] = it.defaultMessage!!
+            if (!errors.containsKey(it.field)) {
+                errors[it.field] = it.defaultMessage!!
+            }
         }
         return RestResponse.fail(HttpStatus.BAD_REQUEST.value(), "Argument Not Valid", errors)
     }

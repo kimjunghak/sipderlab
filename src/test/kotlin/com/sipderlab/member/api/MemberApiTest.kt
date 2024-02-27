@@ -71,7 +71,7 @@ class MemberApiTest {
         val responseData = objectMapper.readValue(response, RestResponse::class.java)
         assertEquals("Argument Not Valid", responseData.msg)
         val data = objectMapper.convertValue(responseData.data, Map::class.java)
-        assertEquals("Password must be between 6 and 10 characters and contain at least one letter and one number", data["password"])
+        assertEquals("Contain at least one letter and one number", data["password"])
     }
 
     @Test
@@ -93,6 +93,6 @@ class MemberApiTest {
         val responseData = objectMapper.readValue(response, RestResponse::class.java)
         assertEquals("Argument Not Valid", responseData.msg)
         val data = objectMapper.convertValue(responseData.data, Map::class.java)
-        assertEquals("Password must be between 6 and 10 characters and contain at least one letter and one number", data["password"])
+        assertEquals("Password must be between 6 and 10 characters", data["password"])
     }
 }
