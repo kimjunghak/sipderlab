@@ -144,3 +144,5 @@ Kotlin: v1.9.22
 Spring Boot: v3.2.2
 
 profile: `dev`로 실행 시 DataSetup.kt이 실행되어서 기본 데이터 세팅을 하여 테스트 가능
+
+실행: Intellij SipderlabApplication Run
