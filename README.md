@@ -33,7 +33,7 @@
 ##### Example cURL
 
 > ```text
->  curl -X POST /member/signup -H "Content-Type: application/json" -d '{ "name": "홍길동2","email": "hong@woodo.kr","cellNo": "010-0001-0002","password": "password"}'  
+>  curl -X POST http://localhost:8080/member/signup -H "Content-Type: application/json" -d '{ "name": "홍길동2","email": "hong@woodo.kr","cellNo": "010-0001-0002","password": "password12"}'  
 > ```
 
 ### Login
@@ -63,11 +63,12 @@
 ##### Example cURL
 
 > ```text
->  curl -X POST /member/login -H "Content-Type: application/json" -d '{"email": "hong@woodo.kr","password": "password12"}'  
+>  curl -X POST http://localhost:8080/member/login -H "Content-Type: application/json" -d '{"email": "hong@woodo.kr","password": "password12"}'  
 > ```
  
 #### Description
-책을 위탁할 때 사용자 정보가 필요하기 때문에 로그인이 필수로 존재해야 함.
+책을 위탁할 때 사용자 정보가 필요하기 때문에 로그인이 필수로 존재해야 함.   
+간단하게 구현하여서 session을 사용했으므로 로그인 이후 브라우저 혹은 포스트맨과 같은 Response 쿠키를 확인할 수 있는 도구를 이용해서 `JSESSIONID`를 가져와야 함.
 
 ### Consignment Book
 
@@ -98,7 +99,7 @@
 ##### Example cURL
 
 > ```text
->  curl -X POST /book/consignment -H "Content-Type: application/json" -d '{"isbn": "9791168473690","name": "세이노의 가르침","price": "1500"}'  
+>  curl -X POST http://localhost:8080/book/consignment -H "Cookie: JSESSIONID=C5EF955DEFDAC35594B5A0D40C34A363" -H "Content-Type: application/json" -d '{"isbn": "9791168473690","name": "세이노의 가르침","price": "1500"}'  
 > ```
  
 ### Borrow Book
@@ -126,7 +127,7 @@
 ##### Example cURL
 
 > ```text
->  curl -X POST /book/consignment -H "Content-Type: application/json" -d '{"isbn": "9791168473690","name": "세이노의 가르침","price": "1500"}'  
+>  curl -X POST http://localhost:8080/book/consignment -H "Content-Type: application/json" -d '{"isbn": "9791168473690","name": "세이노의 가르침","price": "1500"}'  
 > ```
  
 ##### Description
